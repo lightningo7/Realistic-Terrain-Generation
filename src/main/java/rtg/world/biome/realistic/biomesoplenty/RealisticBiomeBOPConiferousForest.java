@@ -15,14 +15,21 @@ import biomesoplenty.api.block.BOPBlocks;
 
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.biomesoplenty.config.BiomeConfigBOPConiferousForest;
+import rtg.util.BlockUtil;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.biome.deco.DecoBoulder;
 import rtg.world.biome.deco.DecoFallenTree;
+import rtg.world.biome.deco.DecoTree;
+import rtg.world.gen.feature.tree.rtg.TreeRTG;
+import rtg.world.gen.feature.tree.rtg.TreeRTGBetulaPapyrifera;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
+
+import static rtg.util.BlockUtil.getStateLeaf;
+import static rtg.util.BlockUtil.getStateLog;
 
 public class RealisticBiomeBOPConiferousForest extends RealisticBiomeBOPBase {
 
@@ -167,6 +174,22 @@ public class RealisticBiomeBOPConiferousForest extends RealisticBiomeBOPBase {
         decoBoulder.strengthFactor = 1f;
         this.addDeco(decoBoulder);
 
+        TreeRTG spruceTree = new TreeRTGBetulaPapyrifera();
+        spruceTree.logBlock = BlockUtil.getStateLog(1);
+        spruceTree.leavesBlock = BlockUtil.getStateLeaf(1);
+        spruceTree.minTrunkSize = 4;
+        spruceTree.maxTrunkSize = 10;
+        spruceTree.minCrownSize = 8;
+        spruceTree.maxCrownSize = 19;
+        this.addTree(spruceTree);
+
+        DecoTree spruceTrees = new DecoTree(spruceTree);
+        spruceTrees.strengthFactorForLoops = 3f;
+        spruceTrees.treeType = DecoTree.TreeType.RTG_TREE;
+        spruceTrees.treeCondition = DecoTree.TreeCondition.ALWAYS_GENERATE;
+        spruceTrees.maxY = 100;
+        this.addDeco(spruceTrees);
+
         DecoFallenTree decoFallenTree = new DecoFallenTree();
         decoFallenTree.loops = 1;
         decoFallenTree.distribution.noiseDivisor = 100f;
@@ -175,7 +198,7 @@ public class RealisticBiomeBOPConiferousForest extends RealisticBiomeBOPBase {
         decoFallenTree.logCondition = DecoFallenTree.LogCondition.NOISE_GREATER_AND_RANDOM_CHANCE;
         decoFallenTree.logConditionNoise = 0f;
         decoFallenTree.logConditionChance = 16;
-        decoFallenTree.logBlock = BOPBlocks.log_1.getStateFromMeta(3);
+        decoFallenTree.logBlock = BOPBlocks.log_0.getStateFromMeta(3);
         decoFallenTree.leavesBlock = Blocks.LEAVES.getDefaultState();
         decoFallenTree.minSize = 3;
         decoFallenTree.maxSize = 5;
