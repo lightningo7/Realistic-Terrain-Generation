@@ -176,7 +176,7 @@ public class RealisticBiomeBOPFen extends RealisticBiomeBOPBase {
         decoFallenTree.logCondition = DecoFallenTree.LogCondition.NOISE_GREATER_AND_RANDOM_CHANCE;
         decoFallenTree.logConditionNoise = 0f;
         decoFallenTree.logConditionChance = 16;
-        decoFallenTree.logBlock = BOPBlocks.log_3.getStateFromMeta(2);
+        decoFallenTree.logBlock = BOPBlocks.log_4.getStateFromMeta(2);
         decoFallenTree.leavesBlock = Blocks.LEAVES.getDefaultState();
         decoFallenTree.minSize = 3;
         decoFallenTree.maxSize = 5;
